@@ -2,4 +2,4 @@
 Creates Halo Orbits using a signle shooting differential correction method in Python
 
 This is currently a work in progress. 
-Robustness needs to be increased and best results only exist at L1 Lagrangian Libration Point at this time.
+Using Richardson's third order model to find initial guess for halo orbit and corrected using single shooting. 
