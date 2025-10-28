@@ -22,16 +22,16 @@ class HaloOrbitFamily:
             mu1 = -mu
             mu2 = 1 - mu
             if Lpt == 1:
-                gamma = mu2 - Ls[0]
+                gamma = mu2 - Ls[0,0]
             elif Lpt == 2:
-                gamma = mu2 - Ls[1]
+                gamma = Ls[1, 0] - mu2
             elif Lpt == 3:
-                gamma = Ls[2] - mu1
+                gamma = Ls[2,0] - mu1
             else:
                 print("Please choose a collinear libration point.")
             return gamma
 
-        gamma = gammaL(self, Lpt, mu)
+        gamma = gammaL(Lpt, mu)
         if Lpt == 1:
             won = 1
             primary = 1-mu
@@ -117,8 +117,9 @@ class HaloOrbitFamily:
     
     def y_crossing(self, t_guess, x0, mu):
         def event(t, x0, *args): return x0[1]
-        cr3bp_accel = Halo_Orbit_Dynamics.cr3bp
-        sol = solve_ivp(cr3bp_accel, (0, t_guess), x0, args=(mu,), rtol=1e-10, atol=1e-10, events=[event])
+        orbit = Halo_Orbit_Dynamics(mu)
+        cr3bp_accel = orbit.cr3bp
+        sol = solve_ivp(cr3bp_accel, (0, t_guess), x0, rtol=1e-10, atol=1e-10, events=[event])
         tc = sol.t_events[0][1]
         Xc = sol.y_events[0][1]
         return tc, Xc
@@ -128,8 +129,9 @@ class HaloOrbitFamily:
         dx = 1 
         dz = 1 
         y = 1
-        cr3bp_stm = Halo_Orbit_Dynamics.cr3bp_stm
-        cr3bp_accel = Halo_Orbit_Dynamics.cr3bp
+        orbit = Halo_Orbit_Dynamics(mu)
+        cr3bp_accel = orbit.cr3bp
+        cr3bp_stm = orbit.cr3bp_stm
         for _ in range(max_attempt): 
             
             if case == 2:
@@ -140,10 +142,10 @@ class HaloOrbitFamily:
             
             x0 = np.concatenate((x0[:6], np.eye(6).flatten())) 
             tc, Xc = self.y_crossing(t_guess, x0[:6], mu)
-            sol = solve_ivp(cr3bp_stm, (0, tc), x0, args=(mu,), rtol=1e-12, atol=1e-12, method='DOP853') 
+            sol = solve_ivp(cr3bp_stm, (0, tc), x0, rtol=1e-12, atol=1e-12, method='DOP853') 
             x, y, z, dx, dy, dz = Xc[:6] 
             phi = sol.y[6:, -1].reshape(6,6) 
-            _, _, _, ddx, ddy, ddz = cr3bp_accel(tc, Xc[:6], mu)
+            _, _, _, ddx, ddy, ddz = cr3bp_accel(tc, Xc[:6])
             if case == 1:
                 D1 = np.array([ [phi[3,0], phi[3,4]], [phi[5,0], phi[5,4]] ]) 
                 D2 = D1 - (1/dy)*np.outer([ddx, ddz], [phi[1,0], phi[1,4]]) 
@@ -171,7 +173,6 @@ class HaloOrbitFamily:
         raise ValueError("Single Shooting Method couldn't converge.")
 
     def halo_family(self, mu, Lpt, branch, n_steps):
-        t_max = 5
         case = Lpt
         ds = 1.0
         
@@ -186,9 +187,9 @@ class HaloOrbitFamily:
         family_periods = []
 
         for i in range(2):
-            state0 = self.third_order_richardson(mu, Lpt, amps[i], -1)
+            state0, T0 = self.third_order_richardson(amps[i])
             x0 = np.concatenate((state0, np.eye(6).flatten()))
-            X0, tc = self.single_shooting(t_max, x0, mu, case)
+            X0, tc = self.single_shooting(T0, x0, mu, case)
             family_states.append(X0[:6])
             family_periods.append(tc)
         
@@ -199,7 +200,7 @@ class HaloOrbitFamily:
             x_predict = np.concatenate((X_predict, np.eye(6).flatten()))
 
             try:
-                X_corr, tc_corr = self.single_shooting(t_max, x_predict, mu, case)
+                X_corr, tc_corr = self.single_shooting(5, x_predict, mu, case)
                 family_states.append(X_corr[:6])
                 family_periods.append(tc_corr)
                 print(f"Step {k}: success, ds={ds:.3f}")
@@ -212,9 +213,10 @@ class HaloOrbitFamily:
         return family_states, family_periods
     
     def plot_halo_family(self, mu, Lpt, branch):
-        cr3bp_stm = Halo_Orbit_Dynamics.cr3bp_stm
-        get_L_points = Halo_Orbit_Dynamics.libration_points
-        
+        orbit = Halo_Orbit_Dynamics(mu)
+        cr3bp_stm = orbit.cr3bp_stm
+        get_L_points = orbit.libration_points
+
         if Lpt == 1:
             Lp = r"L$_{1}$"
             n_steps = 1500 # Gets slower with increasing steps but will succeed without changes to ds
@@ -231,7 +233,7 @@ class HaloOrbitFamily:
         plt.rc('text.latex', preamble=r'\usepackage{textgreek}')
         for i, (X0, tc) in enumerate(zip(states, periods)):
             sol = solve_ivp(cr3bp_stm, (0, 2*tc), np.concatenate((X0, np.eye(6).flatten())),
-                        args=(mu,), rtol=1e-12, atol=1e-12, method='DOP853')
+                            rtol=1e-12, atol=1e-12, method='DOP853')
             x, y, z = sol.y[:3, :]
             ax.plot(x, y, z, color=colors[i], lw=1.5)
         ax.scatter(1 - mu, 0, 0, color='gray', s=40, label='Secondary')
