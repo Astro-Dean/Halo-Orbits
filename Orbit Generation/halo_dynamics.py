@@ -43,7 +43,7 @@ class Halo_Orbit_Dynamics:
         Uz =   - mu2*z/r13**3        - mu*z/r23**3
 
         # Second-Order PDE of psuedo-potential function U(x,y,z)
-        Uxx = 1 - mu2/r13**3 + 3*mu2*(x+mu)/r13**5 - mu/r23**3 + 3*mu*(x-mu2)/r23**5
+        Uxx = 1 - mu2/r13**3 + 3*mu2*(x+mu)**2/r13**5 - mu/r23**3 + 3*mu*(x-mu2)/r23**5
         Uyy = 1 - mu2/r13**3 + 3*mu2*y**2/r13**5   - mu/r23**3 + 3*mu*y**2/r23**5
         Uzz =   - mu2/r13**3 + 3*mu2*z**2/r13**5   - mu/r23**3 + 3*mu*z**2/r23**5
         
