@@ -3,4 +3,4 @@ The generation of halo orbits comes from the use of an analytical approximation 
 
 This is currently a work in progress.
 
-At this moment, the algorithm is capable of getting NHROs from $L_{1}$ and close to NHROs from $L_{2}$. I will be adding psuedo arc-length continuation some time in the future to try to reach NHROs for $L_{2}$
+At this moment, the algorithm is capable of getting NRHOs from $L_{1}$ and close to NHROs from $L_{2}$. I will be adding psuedo arc-length continuation some time in the future to try to reach NRHOs for $L_{2}$
