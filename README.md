@@ -1,15 +1,25 @@
 # 3D Periodic Halo Orbits
-This is my own independent research project that I do during my free time. 
+A computational framework for generating and analyzing periodic halo orbits in the CR3BP environment.
 
-This is currently a work in progress. As I learned more and more about Python, CR3BP, and the mathematics involved, expect significant changes. Most changes will come as mass updates.
+## Overview
+This is my own independent research project exploring the generation of periodic halo orbit families around Lagrangian libration points. In its current state, Richardson's third-order analytical approximation for periodic halo orbits is used for initial conditions at two different z amplitudes which is utilized via a numerical continuation method to find the halo orbit family.
 
+**Status**: This is currently a work in progress. As I learned more and more about Python, CR3BP, and the mathematics involved, expect significant changes.
 
-The generation of halo orbits comes from the use of an analytical approximation via Richardson's third order solver which gives a good initial condition to develop halo orbits with a low $A_{z}$ amplitude. Using two consecutive orbits, both corrected via single shooting, we can create both the southern and northern halo orbit family about $L_{1}$ and $L_{2}$ Lagrangian Libration points using numerical continuation.
+## Current Capabilities
+- Full Halo orbit family at $L_{1}$ including NRHOs and partial Halo orbit family @ $L_{2}$ excluding NRHOs
+- Numerical continuation method
+- Single shooting method
 
-At this moment, the algorithm is capable of getting NRHOs from $L_{1}$ and close to NHROs from $L_{2}$. Changes will need to be made in order to make the algorithm far more user friendly and more robust.
+## Future Plans
+- Restructure coding for better readability and maintainability
+- Increase robustness of family generation via Pseudo Arc-length continuation
+- Improve error handling by creating more user friendly error syntax
+- Add visualization tools for orbit families
+- Create examples and tutorials
+- Write comprehensive mathematical documentation
 
-The last thing that I will do for this is write a comprehensive report on the mathematics involved so that anyone can understand this.
-
+## References
 This work is been made possible by various people who spent their time working in this realm. Here are some papers that I've used so far and will be used to help advance this project:
 
 - Howell, K.C., Pernicka, H.J. Numerical determination of Lissajous trajectories in the restricted three-body problem. Celestial Mechanics 41, 107–124 (1987). https://doi.org/10.1007/BF01238756
