@@ -7,7 +7,7 @@ This is my own independent research project exploring the generation of periodic
 **Status**: This is currently a work in progress. As I learned more and more about Python, CR3BP, and the mathematics involved, expect significant changes.
 
 ## Current Capabilities
-- Full Halo orbit family at $L_{1}$ including NRHOs and partial Halo orbit family @ $L_{2}$ excluding NRHOs
+- Full Halo orbit family at $L_{1}$ including NRHOs and partial Halo orbit family at $L_{2}$ excluding NRHOs
 - Numerical continuation method
 - Single shooting method
 
