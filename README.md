@@ -10,7 +10,7 @@ At this moment, the algorithm is capable of getting NRHOs from $L_{1}$ and close
 
 The last thing that I will do for this is write a comprehensive report on the mathematics involved so that anyone can understand this.
 
-This work is been made possible by various people who spent thier time working in this realm. Here are some papers that I've used so far and will be used to help advance this project:
+This work is been made possible by various people who spent their time working in this realm. Here are some papers that I've used so far and will be used to help advance this project:
 
 - Howell, K.C., Pernicka, H.J. Numerical determination of Lissajous trajectories in the restricted three-body problem. Celestial Mechanics 41, 107–124 (1987). https://doi.org/10.1007/BF01238756
 - Richardson, D.L. Analytic construction of periodic orbits about the collinear points. Celestial Mechanics 22, 241–253 (1980). https://doi.org/10.1007/BF01229511
