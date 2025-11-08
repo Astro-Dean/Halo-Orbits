@@ -14,6 +14,7 @@ This is my own independent research project exploring the generation of periodic
 ## Future Plans
 - Restructure coding for better readability and maintainability
 - Increase robustness of family generation via Pseudo Arc-length continuation
+- Add invariant manifold plotting
 - Improve error handling by creating more user friendly error syntax
 - Add visualization tools for orbit families
 - Create examples and tutorials
