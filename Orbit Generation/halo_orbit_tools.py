@@ -1,6 +1,6 @@
 import numpy as np
 from numpy import sqrt, cos, sin
-from halo_dynamics import Halo_Orbit_Dynamics
+from cr3bp_dynamics import Main_Dynamics
 from scipy.integrate import solve_ivp
 import matplotlib.pyplot as plt
 
@@ -244,3 +244,4 @@ class HaloOrbitFamily:
         ax.set_title(rf"Halo Orbit Family about {Lp}")
         ax.legend()
         plt.show()
+
