@@ -15,7 +15,7 @@ class HaloOrbitFamily:
         mu = self.mu
         Lpt = self.Lpt
 
-        orbit = Halo_Orbit_Dynamics(mu)
+        orbit = Main_Dynamics(mu)
 
         def gammaL(Lpt, mu):
             Ls = orbit.libration_points()
@@ -111,13 +111,11 @@ class HaloOrbitFamily:
         omega = 1 + s1*Ax**2 + s2*Az**2
         T0 = 2*np.pi / omega
 
-        state0 = np.array([x, y, z, vx, vy, vz])
-
-        return state0, T0
+        return x0, T0
     
     def y_crossing(self, t_guess, x0, mu):
         def event(t, x0, *args): return x0[1]
-        orbit = Halo_Orbit_Dynamics(mu)
+        orbit = Main_Dynamics(mu)
         cr3bp_accel = orbit.cr3bp
         sol = solve_ivp(cr3bp_accel, (0, t_guess), x0, rtol=1e-10, atol=1e-10, events=[event])
         tc = sol.t_events[0][1]
@@ -129,7 +127,7 @@ class HaloOrbitFamily:
         dx = 1 
         dz = 1 
         y = 1
-        orbit = Halo_Orbit_Dynamics(mu)
+        orbit = Main_Dynamics(mu)
         cr3bp_accel = orbit.cr3bp
         cr3bp_stm = orbit.cr3bp_stm
         for _ in range(max_attempt): 
@@ -149,7 +147,7 @@ class HaloOrbitFamily:
             if case == 1:
                 D1 = np.array([ [phi[3,0], phi[3,4]], [phi[5,0], phi[5,4]] ]) 
                 D2 = D1 - (1/dy)*np.outer([ddx, ddz], [phi[1,0], phi[1,4]]) 
-                D3 = np.linalg.inv(D2) @ np.array([-dx, -dz]) 
+                D3 = np.linalg.pinv(D2) @ np.array([-dx, -dz]) 
                 x0[0] += D3[0] 
                 x0[4] += D3[1]
             elif case == 2:
@@ -177,7 +175,7 @@ class HaloOrbitFamily:
         ds = 1.0
         
         if Lpt == 1:
-            amps = [1e-4*branch, 1e-3*branch]
+            amps = [1e-4*branch, 1e-2*branch]
         elif Lpt == 2:
             amps = [1e-4*-branch, 1e-1*-branch]
         else:
@@ -204,8 +202,6 @@ class HaloOrbitFamily:
                 family_states.append(X_corr[:6])
                 family_periods.append(tc_corr)
                 print(f"Step {k}: success, ds={ds:.3f}")
-                if k > 90:
-                    print(X_corr[:6])
             except Exception as e:
                 ds *= 0.5
                 print(f"Step {k}: correction failed — {e}, lowering ds to {ds:.3f}")
@@ -213,13 +209,13 @@ class HaloOrbitFamily:
         return family_states, family_periods
     
     def plot_halo_family(self, mu, Lpt, branch):
-        orbit = Halo_Orbit_Dynamics(mu)
+        orbit = Main_Dynamics(mu)
         cr3bp_stm = orbit.cr3bp_stm
         get_L_points = orbit.libration_points
 
         if Lpt == 1:
             Lp = r"L$_{1}$"
-            n_steps = 800 # Gets slower with increasing steps but will succeed without changes to ds
+            n_steps = 150 # Gets slower with increasing steps but will succeed without changes to ds
         elif Lpt == 2:
             Lp = r"L$_{2}$"
             n_steps = 86 # Gets very slow after step 88 which has a failure when ds = 1.0
@@ -227,7 +223,7 @@ class HaloOrbitFamily:
             raise ValueError("Please choose lagrangian Point 1 or 2")
         
         states, periods = self.halo_family(mu, Lpt, branch, n_steps)
-
+        L_xyz = get_L_points()[Lpt-1]
         colors = plt.cm.plasma(np.linspace(0, 1, n_steps+2))
         fig, ax = plt.subplots(subplot_kw={"projection":"3d"})
         plt.rc('text.latex', preamble=r'\usepackage{textgreek}')
@@ -237,12 +233,12 @@ class HaloOrbitFamily:
             x, y, z = sol.y[:3, :]
             ax.plot(x, y, z, color=colors[i], lw=1.5)
         ax.scatter(1 - mu, 0, 0, color='gray', s=40, label='Secondary')
-        ax.scatter(get_L_points(mu)[Lpt-1], 0, 0, color='red', marker='*', s=60, label=Lp)
+        ax.scatter(L_xyz[0], L_xyz[1], L_xyz[2], color='red', marker='*', s=60, label=Lp)
         ax.set_xlabel("X")
         ax.set_ylabel("Y")
         ax.set_zlabel("Z")
         ax.set_title(rf"Halo Orbit Family about {Lp}")
         ax.legend()
         plt.show()
-
+    
 
