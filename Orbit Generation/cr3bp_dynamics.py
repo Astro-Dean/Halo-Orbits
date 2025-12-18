@@ -16,7 +16,7 @@ class PotentialDerivatives:
     Uxz: float
     Uyz: float
 
-class Halo_Orbit_Dynamics:
+class Main_Dynamics:
     def __init__(self, mu):
         self.mu = mu
     
