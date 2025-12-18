@@ -219,7 +219,7 @@ class HaloOrbitFamily:
 
         if Lpt == 1:
             Lp = r"L$_{1}$"
-            n_steps = 1500 # Gets slower with increasing steps but will succeed without changes to ds
+            n_steps = 800 # Gets slower with increasing steps but will succeed without changes to ds
         elif Lpt == 2:
             Lp = r"L$_{2}$"
             n_steps = 86 # Gets very slow after step 88 which has a failure when ds = 1.0
@@ -244,4 +244,5 @@ class HaloOrbitFamily:
         ax.set_title(rf"Halo Orbit Family about {Lp}")
         ax.legend()
         plt.show()
+
 
