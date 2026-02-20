@@ -1,10 +1,12 @@
+***Update***: This file will be updated very soon with new files which changes how the halo family is created. I'm just finishing up the halo and manifold plotting methods and files as well as adding comments and descriptors to each function and where I believe it is necessary to explain certain important components of each function. Expect an update within the next week or so.
+
 # 3D Periodic Halo Orbits
 A computational framework for generating and analyzing periodic halo orbits in the CR3BP environment.
 
 ## Overview
 This is my own independent research project exploring the generation of periodic halo orbit families around Lagrangian libration points. In its current state, Richardson's third-order analytical approximation for periodic halo orbits is used for initial conditions at two different z amplitudes which is utilized via a numerical continuation method to find the halo orbit family.
 
-**Status**: This is currently a work in progress. As I learned more and more about Python, CR3BP, and the mathematics involved, expect significant changes.
+**Status**: This is currently a work in progress. As I learned more and more about Python, CR3BP, and the mathematics involved, expect significant changes. 
 
 ## Current Capabilities
 - Full Halo orbit family at $L_{1}$ including NRHOs and partial Halo orbit family at $L_{2}$ excluding NRHOs
