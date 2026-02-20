@@ -32,3 +32,4 @@ This work is been made possible by various people who spent their time working i
 - Haapala, A. F. (n.d.). Trajectory design using periapse maps and invariant manifolds. Purdue e-Pubs. https://docs.lib.purdue.edu/dissertations/AAI1490654/
 - W. Koon, M. Lo, J. Marsden, S. Ross, "Dynamical Systems, The Three-Body Problem, and Space Mission Design", 2006
 - Howell, K.C., Breakwell, J.V. Almost rectilinear halo orbits. Celestial Mechanics 32, 29–52 (1984). https://doi.org/10.1007/BF01358402
+- Parker, J., & Anderson, R. (2013). LOW-ENERGY LUNAR TRAJECTORY DESIGN. https://descanso.jpl.nasa.gov/monograph/series12/LunarTraj--Overall.pdf
