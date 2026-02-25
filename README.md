@@ -33,3 +33,4 @@ This work is been made possible by various people who spent their time working i
 - W. Koon, M. Lo, J. Marsden, S. Ross, "Dynamical Systems, The Three-Body Problem, and Space Mission Design", 2006
 - Howell, K.C., Breakwell, J.V. Almost rectilinear halo orbits. Celestial Mechanics 32, 29–52 (1984). https://doi.org/10.1007/BF01358402
 - Parker, J., & Anderson, R. (2013). LOW-ENERGY LUNAR TRAJECTORY DESIGN. https://descanso.jpl.nasa.gov/monograph/series12/LunarTraj--Overall.pdf
+- Wang, S., Koon, Lo, M., Marsden, J., & Ross, S. (n.d.). Dynamical Systems, the Three-Body Problem and Space Mission Design. Retrieved February 24, 2026, from https://ross.aoe.vt.edu/books/Ross_3BodyProblem_Book_2022.pdf
