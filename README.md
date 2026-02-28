@@ -27,7 +27,6 @@ This work is been made possible by various people who spent their time working i
 - Breakwell, J.V., Brown, J.V. The ‘Halo’ family of 3-dimensional periodic orbits in the Earth-Moon restricted 3-body problem. Celestial Mechanics 20, 389–404 (1979). https://doi.org/10.1007/BF0123040
 - Connor Howell, K. Three-dimensional, periodic, ‘halo’ orbits. Celestial Mechanics 32, 53–71 (1984). https://doi.org/10.1007/BF01358403
 - Haapala, A. F. (n.d.). Trajectory design using periapse maps and invariant manifolds. Purdue e-Pubs. https://docs.lib.purdue.edu/dissertations/AAI1490654/
-- W. Koon, M. Lo, J. Marsden, S. Ross, "Dynamical Systems, The Three-Body Problem, and Space Mission Design", 2006
 - Howell, K.C., Breakwell, J.V. Almost rectilinear halo orbits. Celestial Mechanics 32, 29–52 (1984). https://doi.org/10.1007/BF01358402
 - Parker, J., & Anderson, R. (2013). LOW-ENERGY LUNAR TRAJECTORY DESIGN. https://descanso.jpl.nasa.gov/monograph/series12/LunarTraj--Overall.pdf
 - Wang, S., Koon, Lo, M., Marsden, J., & Ross, S. (n.d.). Dynamical Systems, the Three-Body Problem and Space Mission Design. Retrieved February 24, 2026, from https://ross.aoe.vt.edu/books/Ross_3BodyProblem_Book_2022.pdf
