@@ -1,26 +1,23 @@
-***Update***: This file will be updated very soon with new files which changes how the halo family is created. I'm just finishing up the halo and manifold plotting methods and files as well as adding comments and descriptors to each function and where I believe it is necessary to explain certain important components of each function. Expect an update within the next week or so.
-
 # 3D Periodic Halo Orbits
 A computational framework for generating and analyzing periodic halo orbits in the CR3BP environment.
 
 ## Overview
-This is my own independent research project exploring the generation of periodic halo orbit families around Lagrangian libration points. In its current state, Richardson's third-order analytical approximation for periodic halo orbits is used for initial conditions at two different z amplitudes which is utilized via a numerical continuation method to find the halo orbit family.
+This is my own independent research project exploring the generation of periodic halo orbit families around Lagrangian libration points. In its current state, initial guesses fron NASA JPL's Three-Body Periodic Orbit Catalog are used with single shooting as well as Natural Parameter and Pseudo Arc-Length Continuation to generate full Halo Orbits in different systems. Four tests files exist shows generate of halo orbits at $L_1$, $L_2$, and $L_3$ in the Earth-Moon system as well as a test at $L_1$ in the Jupiter-Europa system.
 
 **Status**: This is currently a work in progress. As I learned more and more about Python, CR3BP, and the mathematics involved, expect significant changes. 
 
 ## Current Capabilities
-- Full Halo orbit family at $L_{1}$ including NRHOs and partial Halo orbit family at $L_{2}$ excluding NRHOs
-- Numerical continuation method
+- Full Halo orbit family at Collinear Lagrangian Points including NRHOs
+- Natural Parameter and Pseudo Arc-length Continuation
 - Single shooting method
+- Orbit Family and Invariant manifold plotting with options
+- Restructured coding for better readability and maintainability
+- Create database of different CR3BP systems
 
 ## Future Plans
-- Restructure coding for better readability and maintainability
-- Increase robustness of family generation via Pseudo Arc-length continuation
-- Add invariant manifold plotting
-- Improve error handling by creating more user friendly error syntax
-- Add visualization tools for orbit families
 - Create examples and tutorials
 - Write comprehensive mathematical documentation
+- Increase robustness of shooting method (most likely with multiple shooting)
 
 ## References
 This work is been made possible by various people who spent their time working in this realm. Here are some papers that I've used so far and will be used to help advance this project:
