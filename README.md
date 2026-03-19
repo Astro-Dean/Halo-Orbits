@@ -2,7 +2,7 @@
 A computational framework for generating and analyzing periodic halo orbits in the CR3BP environment.
 
 ## Overview
-This is my own independent research project exploring the generation of periodic halo orbit families around Lagrangian libration points. In its current state, initial guesses fron NASA JPL's Three-Body Periodic Orbit Catalog are used with single shooting as well as Natural Parameter and Pseudo Arc-Length Continuation to generate full Halo Orbits in different systems. Four tests files exist shows generate of halo orbits at $L_1$, $L_2$, and $L_3$ in the Earth-Moon system as well as a test at $L_1$ in the Jupiter-Europa system.
+This is my own independent research project exploring the generation of periodic halo orbit families around Lagrangian libration points. In its current state, initial guesses from NASA JPL's Three-Body Periodic Orbit Catalog are used with single shooting as well as Natural Parameter and Pseudo Arc-Length Continuation to generate full Halo Orbits in different systems. Four tests files exist shows generate of halo orbits at $L_1$, $L_2$, and $L_3$ in the Earth-Moon system as well as a test at $L_1$ in the Jupiter-Europa system.
 
 **Status**: This is currently a work in progress. As I learned more and more about Python, CR3BP, and the mathematics involved, expect significant changes. 
 
