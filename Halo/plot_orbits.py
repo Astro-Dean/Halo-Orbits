@@ -8,7 +8,7 @@ Parker, J., & Anderson, R. (2013). LOW-ENERGY LUNAR TRAJECTORY DESIGN. https://d
 
 import numpy as np
 import matplotlib.pyplot as plt
-import matplotlib.cm as cm
+import matplotlib as mpl
 import matplotlib.colors as mcolors
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib.collections import LineCollection
@@ -108,7 +108,7 @@ def plot_family(
         raise ValueError(f"color_by must be one of {list(scalar_map)}")
     values = scalar_map[color_by]
     norm = mcolors.Normalize(vmin=values.min(), vmax=values.max())
-    cmap_obj = cm.get_cmap(cmap)
+    cmap_obj = mpl.colormaps.get_cmap(cmap)
     colors = [cmap_obj(norm(v)) for v in values]
 
     label_map = {
@@ -251,7 +251,7 @@ def plot_family(
         ax_stab.tick_params(colors="#b8b8b8")
         ax_stab.axhline(1.0, color="white", linestyle="--", alpha=0.4)
 
-    sm = cm.ScalarMappable(cmap=cmap_obj, norm=norm)
+    sm = mpl.cm.ScalarMappable(cmap=cmap_obj, norm=norm)
     sm.set_array([])
 
     if show_stability:
